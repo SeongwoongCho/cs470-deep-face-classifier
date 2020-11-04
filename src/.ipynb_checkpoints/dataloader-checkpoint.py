@@ -20,7 +20,7 @@ def get_datas():
     
     return train_x,train_y,valid_x,valid_y
 
-def Dataset(data.Dataset):
+class Dataset(data.Dataset):
     def __init__(self,X,y,is_train = True, ls_eps = 0):
         self.X = X
         self.y = y
@@ -32,15 +32,15 @@ def Dataset(data.Dataset):
     def __getitem__(self,idx):
         x = self.X[idx]
         y = self.y[idx]
-        
         x = cv2.imread(x)
         x = cv2.cvtColor(x, cv2.COLOR_BGR2RGB)
-        x = self.transform(x)
+        x = self.transform(image = x)["image"]
+        x = np.rollaxis(x,-1,0) # H,W,C -> C,H,W
+
         y = to_onehot(y,num_classes)
         y = label_smoothing(y,self.ls_eps)
-        
-        data = {
-            x : torch.from_numpy(x)
-            y : torch.from_numpy(y)
-        }
+
+        data = {}
+        data['x'] = torch.from_numpy(x.astype('float32'))
+        data['y'] = torch.from_numpy(y.astype('float32'))
         return data

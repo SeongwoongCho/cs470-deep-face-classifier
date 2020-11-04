@@ -2,9 +2,6 @@ import torch
 import torch.nn as nn
 import numpy as np
 import os
-import time
-import csv
-import warnings
 
 from torch.optim import AdamW,SGD
 from torch.utils import data
@@ -12,11 +9,10 @@ from utils import *
 from warmup_scheduler import GradualWarmupScheduler
 from models import get_cls_model
 from dataloader import get_datas,Dataset
-
-seed_everything(42)
-
 from tqdm import tqdm
 from importify import Serializable
+
+seed_everything(42)
 
 class Config(Serializable):
     def __init__(self):
@@ -39,7 +35,7 @@ class Config(Serializable):
         self.mixup_alpha = 0.
         self.cutmix_prob = 0.
         self.cutmix_beta = 0.
-        self.label_smoothing = 0.1
+        self.label_smoothing = 0.01
         
         ## training_options
         self.amp = False
@@ -55,7 +51,7 @@ os.makedirs(save_path,exist_ok=True)
 saved_status = config.export_json(path=os.path.join(save_path,'saved_status.json'))
 
 train_x,train_y,valid_x,valid_y = get_datas()
-train_dataset = Dataset(train_x,train_y, is_train=True, ls_eps = self.label_smoothing)
+train_dataset = Dataset(train_x,train_y, is_train=True, ls_eps = config.label_smoothing)
 valid_dataset = Dataset(valid_x,valid_y, is_train=False, ls_eps = 0)
 train_loader=data.DataLoader(dataset=train_dataset,batch_size=config.batch_size,num_workers=config.num_workers,shuffle=True)
 valid_loader=data.DataLoader(dataset=valid_dataset,batch_size=config.batch_size,num_workers=config.num_workers,shuffle=False)
@@ -91,6 +87,7 @@ for epoch in range(config.n_epoch):
     for idx,data in enumerate(progress_bar):
         x = data['x'].cuda()
         y = data['y'].cuda()
+        
         if np.random.uniform(0,1) < config.mixup_prob:
             x,y_a,y_b,lam = mixup_data(x,y,config.mixup_alpha)
             pred = model(x)
