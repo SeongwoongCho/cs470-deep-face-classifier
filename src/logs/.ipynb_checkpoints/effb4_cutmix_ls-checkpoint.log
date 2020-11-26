@@ -1,0 +1,25 @@
+Loaded pretrained weights for efficientnet-b4
+Epoch [0]/[100] train_loss: 0.209435 valid_loss: 0.630439 valid_acc:0.325447 valid_precision:0.259893 valid_recall:0.497734 valid_f1:0.341481
+Epoch [1]/[100] train_loss: 0.200054 valid_loss: 0.173082 valid_acc:0.581650 valid_precision:0.399041 valid_recall:0.576262 valid_f1:0.471550
+Epoch [2]/[100] train_loss: 0.184739 valid_loss: 0.112241 valid_acc:0.713791 valid_precision:0.543115 valid_recall:0.797953 valid_f1:0.646321
+Epoch [3]/[100] train_loss: 0.180779 valid_loss: 0.110663 valid_acc:0.815061 valid_precision:0.609711 valid_recall:0.819623 valid_f1:0.699253
+Epoch [4]/[100] train_loss: 0.178961 valid_loss: 0.127400 valid_acc:0.871898 valid_precision:0.650059 valid_recall:0.726327 valid_f1:0.686080
+Epoch [5]/[100] train_loss: 0.176117 valid_loss: 0.122290 valid_acc:0.860935 valid_precision:0.629168 valid_recall:0.738234 valid_f1:0.679351
+Epoch [6]/[100] train_loss: 0.174769 valid_loss: 0.100785 valid_acc:0.849683 valid_precision:0.644178 valid_recall:0.820775 valid_f1:0.721832
+Epoch [7]/[100] train_loss: 0.172431 valid_loss: 0.098562 valid_acc:0.888344 valid_precision:0.703691 valid_recall:0.803797 valid_f1:0.750420
+Epoch [8]/[100] train_loss: 0.170001 valid_loss: 0.109257 valid_acc:0.881420 valid_precision:0.687600 valid_recall:0.796172 valid_f1:0.737914
+Epoch [9]/[100] train_loss: 0.166814 valid_loss: 0.105500 valid_acc:0.693883 valid_precision:0.545410 valid_recall:0.811002 valid_f1:0.652204
+Epoch [10]/[100] train_loss: 0.167625 valid_loss: 0.106281 valid_acc:0.841604 valid_precision:0.629508 valid_recall:0.802113 valid_f1:0.705405
+Epoch [11]/[100] train_loss: 0.166431 valid_loss: 0.195142 valid_acc:0.806117 valid_precision:0.483377 valid_recall:0.585954 valid_f1:0.529746
+Epoch [12]/[100] train_loss: 0.162695 valid_loss: 0.107701 valid_acc:0.862954 valid_precision:0.663049 valid_recall:0.826299 valid_f1:0.735727
+Epoch [13]/[100] train_loss: 0.162417 valid_loss: 0.103757 valid_acc:0.863531 valid_precision:0.653552 valid_recall:0.791722 valid_f1:0.716033
+Epoch [14]/[100] train_loss: 0.158497 valid_loss: 0.130531 valid_acc:0.514137 valid_precision:0.479396 valid_recall:0.733565 valid_f1:0.579851
+Epoch [15]/[100] train_loss: 0.163176 valid_loss: 0.101937 valid_acc:0.806405 valid_precision:0.605000 valid_recall:0.824795 valid_f1:0.698004
+Epoch [16]/[100] train_loss: 0.157716 valid_loss: 0.107528 valid_acc:0.868436 valid_precision:0.664817 valid_recall:0.797855 valid_f1:0.725286
+Epoch [17]/[100] train_loss: 0.157996 valid_loss: 0.090957 valid_acc:0.867282 valid_precision:0.673049 valid_recall:0.840798 valid_f1:0.747630
+Epoch [18]/[100] train_loss: 0.159577 valid_loss: 0.108251 valid_acc:0.880265 valid_precision:0.680948 valid_recall:0.769407 valid_f1:0.722480
+Epoch [19]/[100] train_loss: 0.156428 valid_loss: 0.089917 valid_acc:0.854587 valid_precision:0.662109 valid_recall:0.858603 valid_f1:0.747662
+Epoch [20]/[100] train_loss: 0.156592 valid_loss: 0.095987 valid_acc:0.841316 valid_precision:0.639245 valid_recall:0.832603 valid_f1:0.723223
+Epoch [21]/[100] train_loss: 0.156049 valid_loss: 0.096168 valid_acc:0.891518 valid_precision:0.711335 valid_recall:0.798462 valid_f1:0.752384
+Epoch [22]/[100] train_loss: 0.155069 valid_loss: 0.107172 valid_acc:0.890941 valid_precision:0.710134 valid_recall:0.786450 valid_f1:0.746346
+Epoch [23]/[100] train_loss: 0.153967 valid_loss: 0.095467 valid_acc:0.887478 valid_precision:0.704524 valid_recall:0.831046 valid_f1:0.762573

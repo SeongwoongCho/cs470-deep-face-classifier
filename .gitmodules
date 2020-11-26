@@ -1,0 +1,3 @@
+[submodule "AutoCrawler"]
+	path = AutoCrawler
+	url = https://github.com/SeongwoongJo/cs470-deep-face-classifier

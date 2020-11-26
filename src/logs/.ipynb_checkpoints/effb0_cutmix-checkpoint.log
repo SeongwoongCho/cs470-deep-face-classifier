@@ -1,0 +1,9 @@
+Loaded pretrained weights for efficientnet-b0
+Epoch [0]/[100] train_loss: 0.190515 valid_loss: 0.229516 valid_acc:0.819388 valid_precision:0.472520 valid_recall:0.590115 valid_f1:0.524811
+Epoch [1]/[100] train_loss: 0.170554 valid_loss: 0.115921 valid_acc:0.849106 valid_precision:0.628019 valid_recall:0.774772 valid_f1:0.693719
+Epoch [2]/[100] train_loss: 0.157503 valid_loss: 0.121897 valid_acc:0.789383 valid_precision:0.561692 valid_recall:0.755627 valid_f1:0.644384
+Epoch [3]/[100] train_loss: 0.155269 valid_loss: 0.104564 valid_acc:0.770052 valid_precision:0.572364 valid_recall:0.807379 valid_f1:0.669856
+Epoch [4]/[100] train_loss: 0.147753 valid_loss: 0.100624 valid_acc:0.865840 valid_precision:0.658412 valid_recall:0.794975 valid_f1:0.720278
+Epoch [5]/[100] train_loss: 0.146995 valid_loss: 0.123233 valid_acc:0.877957 valid_precision:0.672956 valid_recall:0.755073 valid_f1:0.711654
+Epoch [6]/[100] train_loss: 0.144898 valid_loss: 0.087626 valid_acc:0.808713 valid_precision:0.607173 valid_recall:0.827773 valid_f1:0.700516
+Epoch [7]/[100] train_loss: 0.141397 valid_loss: 0.113271 valid_acc:0.871610 valid_precision:0.656832 valid_recall:0.752431 valid_f1:0.701389

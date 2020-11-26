@@ -13,6 +13,7 @@ from tqdm import tqdm
 from importify import Serializable
 
 seed_everything(42)
+n_classes = 3
 
 class Config(Serializable):
     def __init__(self):
@@ -60,8 +61,9 @@ model = get_cls_model(config.coeff)
 model.cuda()
 
 if not config.amp:
-    model= nn.DataParallel(model)
-        
+    #model= nn.DataParallel(model)
+    pass
+
 if config.optim == 'adamw':
     optimizer = AdamW(model.parameters(),lr=config.learning_rate,weight_decay = config.weight_decay)
 elif config.optim == 'sgd':
@@ -69,12 +71,19 @@ elif config.optim == 'sgd':
 
 if config.amp:
     model, optimizer = amp.initialize(model, optimizer, opt_level="O1")
-    model= nn.DataParallel(model)
+    #model= nn.DataParallel(model)
     
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer,T_max = config.n_epoch*len(train_loader))
 if config.warmup:
     scheduler = GradualWarmupScheduler(optimizer, multiplier = 1, total_epoch = config.warmup*len(train_loader), after_scheduler = scheduler)
-criterion = cross_entropy()
+
+
+weights = [0,0,0]
+for j in train_y:
+    weights[j] +=1
+weights = [1/w for w in weights]
+    
+criterion = cross_entropy(weights = weights)
 
 best_acc=np.inf
 step = 0
@@ -97,8 +106,8 @@ for epoch in range(config.n_epoch):
             pred = model(x)
             loss = criterion(pred,y_a*lam + y_b*(1-lam))
         else:
-            pred = model(speech)
-            loss = criterion(pred,speech_label)
+            pred = model(x)
+            loss = criterion(pred,y)
         if config.amp:
             with amp.scale_loss(loss, optimizer) as scaled_loss:
                 scaled_loss.backward()
@@ -114,8 +123,9 @@ for epoch in range(config.n_epoch):
             'Step: {}. LR : {:.5f}. Epoch: {}/{}. Iteration: {}/{}. current loss: {:.5f}'.format(step, optimizer.param_groups[0]['lr'], epoch, config.n_epoch, idx + 1, len(train_loader), loss.item()))
 
     valid_loss=0
-    valid_acc=0
     model.eval()
+    preds = []
+    trues = []
     for idx,data in enumerate(tqdm(valid_loader)):
         x = data['x'].cuda()
         y = data['y'].cuda()
@@ -123,11 +133,15 @@ for epoch in range(config.n_epoch):
             pred = model(x)
             loss = criterion(pred,y)
         valid_loss+=loss.item()/len(valid_loader)
-        pred=pred.detach().max(1)[1]
-        y = y.detach().max(1)[1]
-        acc = pred.eq(y.view_as(pred)).sum().item() / len(pred)
-        valid_acc+=acc/len(valid_loader)
-
-    torch.save(model.module.state_dict(),os.path.join(save_path,'%d_best_%.4f.pth'%(epoch,valid_loss)))
-    print("Epoch [%d]/[%d] train_loss: %.6f valid_loss: %.6f valid_acc:%.6f"%(
-    epoch,config.n_epoch,train_loss,valid_loss,valid_acc))
+        pred= list(pred.cpu().detach().max(1)[1].numpy())
+        true = list(y.cpu().detach().max(1)[1].numpy())
+        
+        preds += pred
+        trues += true
+    
+    acc,precision,recall,f1 = eval_metric(preds,trues,n_classes = n_classes)
+    
+    torch.save(model.state_dict(),os.path.join(save_path,'%d_best_%.4f_%.4f.pth'%(epoch,valid_loss,f1)))
+#    torch.save(model.module.state_dict(),os.path.join(save_path,'%d_best_%.4f.pth'%(epoch,valid_loss)))
+    print("Epoch [%d]/[%d] train_loss: %.6f valid_loss: %.6f valid_acc:%.6f valid_precision:%.6f valid_recall:%.6f valid_f1:%.6f"%(
+    epoch,config.n_epoch,train_loss,valid_loss,acc,precision,recall,f1))

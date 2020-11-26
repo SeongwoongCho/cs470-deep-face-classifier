@@ -1,0 +1,8 @@
+/datas
+/full_data
+/new_data
+*.pth
+*.onnx
+*.zip
+*.jpg
+*.jpeg
