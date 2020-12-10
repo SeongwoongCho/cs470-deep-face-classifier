@@ -17,10 +17,10 @@
     - 토끼상 : 방탄소년단 정국, 아이콘 바비, 워너원 박지훈, 엑소 수호, 안형섭, 수지, 트와이스 나연, 트와이스 다현, 이세영, 백진희
     - 대머리상 : from kaggle
 
-# Download Dataset
+# Download (preprocessed) Dataset
 ```
 $ pip install gdown
-$ gdown [link]
+$ gdown https://drive.google.com/u/0/uc?id=15-JrqQ_IhybGqCubkh79Z5s6sznKaTjM
 $ unzip data.zip
 
 Then, change the folder name into full_data
@@ -71,6 +71,14 @@ $ python3 export_onnx.py
 # Requirements
 
 ```
-
-
+torch==1.4.0
+torch-mtcnn==0.0.7
+torchvision==0.5.0 
+numpy==1.16.4
+opencv-python==4.3.0.36 
+facenet_pytorch==2.5.1
+scikit-learn==0.23.1
+tqdm==4.47.0
+importify==0.0.1
+albumentations==0.4.6
 ```
