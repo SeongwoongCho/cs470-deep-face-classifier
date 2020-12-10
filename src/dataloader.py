@@ -28,7 +28,7 @@ def get_datas():
         
         if k !='bald':
             for j,person in enumerate(data[k]):
-                base_dir = '../full_data/updated/{}/{}/'.format(k,person)
+                base_dir = '../full_data/new_updated/{}/{}/'.format(k,person)
                 files = os.listdir(base_dir)
                 files = [base_dir + file for file in files if file.endswith('.jpg')]
                 if j<5:
@@ -38,7 +38,7 @@ def get_datas():
                     valid_x +=files
                     valid_y += [i]*len(files)
         else:
-            base_dir = '../full_data/updated/bald/Bald_train/'
+            base_dir = '../full_data/new_updated/bald/Bald_train/'
             files = os.listdir(base_dir)
             files = [base_dir + file for file in files if file.endswith('.jpg')]
             train_x += files[:1900]
@@ -57,13 +57,13 @@ def get_test_datas():
         i = [0,1,2,2,2,2][i]
         if k !='bald':
             for j,person in enumerate(data[k]):
-                base_dir = '../full_data/updated/{}/{}/'.format(k,person)
+                base_dir = '../full_data/new_updated/{}/{}/'.format(k,person)
                 files = os.listdir(base_dir)
                 files = [base_dir + file for file in files if file.endswith('.jpg')]
                 x +=files
                 y += [i]*len(files)
         else:
-            base_dir = '../full_data/updated/bald/Bald_test/'
+            base_dir = '../full_data/new_updated/bald/Bald_test/'
             files = os.listdir(base_dir)
             files = [base_dir + file for file in files if file.endswith('.jpg')]
             x += files

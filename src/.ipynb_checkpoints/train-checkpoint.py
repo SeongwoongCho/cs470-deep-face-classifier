@@ -78,7 +78,7 @@ if config.warmup:
     scheduler = GradualWarmupScheduler(optimizer, multiplier = 1, total_epoch = config.warmup*len(train_loader), after_scheduler = scheduler)
 
 
-weights = [0,0,0]
+weights = [0]*n_classes
 for j in train_y:
     weights[j] +=1
 weights = [1/w for w in weights]

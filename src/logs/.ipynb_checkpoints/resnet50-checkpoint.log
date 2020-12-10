@@ -1,0 +1,4 @@
+Epoch [0]/[100] train_loss: 0.180388 valid_loss: 0.553825 valid_acc:0.218704 valid_precision:0.093259 valid_recall:0.481843 valid_f1:0.156271
+Epoch [1]/[100] train_loss: 0.155057 valid_loss: 0.132326 valid_acc:0.786866 valid_precision:0.486429 valid_recall:0.654808 valid_f1:0.558197
+Epoch [2]/[100] train_loss: 0.133155 valid_loss: 0.182791 valid_acc:0.739373 valid_precision:0.448609 valid_recall:0.579393 valid_f1:0.505682
+Epoch [3]/[100] train_loss: 0.118330 valid_loss: 0.132089 valid_acc:0.661096 valid_precision:0.455594 valid_recall:0.662177 valid_f1:0.539795

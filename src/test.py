@@ -4,7 +4,7 @@ from torch.utils import data
 from models import *
 from tqdm import tqdm
 import torch.nn.functional as F
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, classification_report
 from utils import eval_metric
 import numpy as np
 
@@ -14,18 +14,12 @@ test_dataset = Dataset(x,y, is_train=False, ls_eps = 0)
 test_loader=data.DataLoader(dataset=test_dataset,batch_size=128,num_workers=10,shuffle=False)
 
 coeffs = [50,0,0,0,4,4]
-weight_paths = ['./logs/resnet50_non/18_best_0.0871_0.6958.pth',
-                './logs/effb0_non/17_best_0.0807_0.7439.pth',
-                './logs/effb0_cutmix/54_best_0.0694_0.8041.pth',
-                './logs/effb0_cutmix_ls/52_best_0.0788_0.7793.pth',
-                './logs/effb4_cutmix/41_best_0.0662_0.7735.pth',
-                './logs/effb4_cutmix_ls/45_best_0.0807_0.7853.pth']
-# weight_paths = ['./logs/resnet50_non/56_best_0.1139_0.7518.pth',
-#                 './logs/effb0_non/23_best_0.1263_0.7739.pth',
-#                 './logs/effb0_cutmix/82_best_0.0738_0.8069.pth',
-#                 './logs/effb0_cutmix_ls/75_best_0.0832_0.8027.pth',
-#                 './logs/effb4_cutmix/61_best_0.0763_0.7964.pth',
-#                 './logs/effb4_cutmix_ls/55_best_0.0886_0.7949.pth']
+weight_paths = ['./logs/resnet50_non/10_best_0.0862_0.6842.pth',
+                './logs/effb0_non/16_best_0.0782_0.7220.pth',
+                './logs/effb0_cutmix/47_best_0.0664_0.7858.pth',
+                './logs/effb0_cutmix_ls/40_best_0.0747_0.7766.pth',
+                './logs/effb4_cutmix/59_best_0.0672_0.7730.pth',
+                './logs/effb4_cutmix_ls/58_best_0.0778_0.7665.pth']
 exp_names = ['resnet50',
             'efficientnet-b0',
             'efficientnet-b0 + cutmix',
@@ -77,7 +71,7 @@ for temperature in [0.5,1,2]:
         y = torch.argmax(y,dim = -1).detach().numpy()
         with torch.no_grad():
             pred1 = F.softmax(models[2](x)).pow(temperature)
-            pred2 = F.softmax(models[5](x)).pow(temperature)
+            pred2 = F.softmax(models[4](x)).pow(temperature)
             pred1 = pred1/torch.sum(pred1,dim = -1, keepdim=True)
             pred2 = pred2/torch.sum(pred2,dim = -1, keepdim=True)
 
