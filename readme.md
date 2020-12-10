@@ -1,4 +1,5 @@
 # CS470 Project
+- Team 8
 - DeepLearning Part1 - human face to animal classification
 - Set Requirements,and set data through Download Dataset Section,then see Quick Start Section. 
 - All Pretrained models(that we trained) are included in the ./src/logs/${model_name}  
