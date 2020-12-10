@@ -1,4 +1,4 @@
-from efftorch.efficientnet_pytorch import EfficientNet
+from efficientnet.efficientnet_pytorch import EfficientNet
 from torchvision.models import resnet18,resnet34,resnet50
 from facenet_pytorch import InceptionResnetV1
 import torch.nn as nn
